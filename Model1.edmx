@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SalonManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalonManagementSystem.dbo.LogonTable2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LogonTable2">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalonAppointmentTable">
+          <Key>
+            <PropertyRef Name="Service Id" />
+          </Key>
+          <Property Name="Service Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Full Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Service Request Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Service Details" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date and Time Requested" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SalonManagementSystemModelStoreContainer">
+          <EntitySet Name="SalonAppointmentTable" EntityType="Self.SalonAppointmentTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogonTable2" EntityType="Self.LogonTable2" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LogonTable2].[Username] AS [Username], 
+    [LogonTable2].[Password] AS [Password]
+    FROM [dbo].[LogonTable2] AS [LogonTable2]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalonManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SalonAppointmentTable">
+          <Key>
+            <PropertyRef Name="Service_Id" />
+          </Key>
+          <Property Name="Service_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Service_Request_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Service_Details" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_and_Time_Requested" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LogonTable2">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SalonManagementSystemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SalonAppointmentTables" EntityType="Self.SalonAppointmentTable" />
+          <EntitySet Name="LogonTable2" EntityType="Self.LogonTable2" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SalonManagementSystemModelStoreContainer" CdmEntityContainer="SalonManagementSystemEntities1">
+          <EntitySetMapping Name="SalonAppointmentTables">
+            <EntityTypeMapping TypeName="SalonManagementSystemModel.SalonAppointmentTable">
+              <MappingFragment StoreEntitySet="SalonAppointmentTable">
+                <ScalarProperty Name="Service_Id" ColumnName="Service Id" />
+                <ScalarProperty Name="Full_Name" ColumnName="Full Name" />
+                <ScalarProperty Name="Service_Request_Type" ColumnName="Service Request Type" />
+                <ScalarProperty Name="Service_Details" ColumnName="Service Details" />
+                <ScalarProperty Name="Date_and_Time_Requested" ColumnName="Date and Time Requested" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogonTable2">
+            <EntityTypeMapping TypeName="SalonManagementSystemModel.LogonTable2">
+              <MappingFragment StoreEntitySet="LogonTable2">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
